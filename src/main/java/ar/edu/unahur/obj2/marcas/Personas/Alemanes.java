@@ -7,8 +7,8 @@ import ar.edu.unahur.obj2.marcas.Jarras;
 import ar.edu.unahur.obj2.marcas.Marcas.Marca;
 
 public class Alemanes extends Personas {
-    public Alemanes(Double peso, Boolean escuchaMusica, List<Jarras> cantCervezas, Integer nivAguante){
-        super(peso, escuchaMusica, nivAguante);
+    public Alemanes(Double peso, Boolean escuchaMusica, List<Jarras> cantCervezas, Integer nivAguante,String pais){
+        super(peso, escuchaMusica, nivAguante,pais);
     }
     @Override
     public Boolean leGusta(Marca unaMarca) {

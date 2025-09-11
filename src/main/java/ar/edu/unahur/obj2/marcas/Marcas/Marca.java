@@ -9,9 +9,9 @@ public abstract class Marca {
     */
    private Double graduacion;
    public Marca(Double contenidoLupulo, String pais, Double graduacion) {
-    this.contenidoLupulo = contenidoLupulo;
-    this.pais = pais;
-    this.graduacion = graduacion;
+      this.contenidoLupulo = contenidoLupulo;
+      this.pais = pais;
+      this.graduacion = graduacion;
    }
    public Double getContenidoLupulo() {
     return contenidoLupulo;

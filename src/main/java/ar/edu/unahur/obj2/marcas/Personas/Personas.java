@@ -8,17 +8,25 @@ import ar.edu.unahur.obj2.marcas.Jarras;
 import ar.edu.unahur.obj2.marcas.Marcas.Marca;
 
 public abstract class Personas {
-
-    public Double peso;
-    public Boolean escuchaMusica;
+    private Double peso;
+    private Boolean escuchaMusica;
     List<Jarras> cantCervezas = new ArrayList<>();
-    public Integer nivAguante;
+    private Integer nivAguante;
+    private String pais;
 
-    public Personas(Double peso, Boolean escuchaMusica, List<Jarras> cantCervezas, Integer nivAguante) {
+    
+    public Personas(Double peso, Boolean escuchaMusica, List<Jarras> cantCervezas, Integer nivAguante, String pais) {
         this.peso = peso;
         this.escuchaMusica = escuchaMusica;
         this.cantCervezas = cantCervezas;
         this.nivAguante = nivAguante;
+        this.pais = pais;
+    }
+    public Personas(Double peso, Boolean escuchaMusica, Integer nivAguante, String pais) {
+        this.peso = peso;
+        this.escuchaMusica = escuchaMusica;
+        this.nivAguante = nivAguante;
+        this.pais = pais;
     }
     public Double getPeso() {
         return peso;
@@ -35,11 +43,6 @@ public abstract class Personas {
     public void agregarJarra(Jarras unaJarra){
         cantCervezas.add(unaJarra);
     }
-    public Personas(Double peso, Boolean escuchaMusica, Integer nivAguante) {
-        this.peso = peso;
-        this.escuchaMusica = escuchaMusica;
-        this.nivAguante = nivAguante;
-    }
     public Boolean estaEbria(){
         return (cantAlcholIngerido() * this.peso) > this.nivAguante;
     }
@@ -54,6 +57,9 @@ public abstract class Personas {
     public abstract Boolean adicional(Carpas unaCarpa);
 
     public Boolean puedeEntrarAlaCarpa(Carpas unaCarpa){
-        return quiereEntrarAUnaCarpa(unaCarpa) && unaCarpa.dejaPasarAPersona(this);
+        return quiereEntrarAUnaCarpa(unaCarpa) && unaCarpa.dejaIngresarALaPersona(this);
+    }
+    public Boolean esPatriota(Marca unMarca){
+        return cantCervezas.stream().allMatch(j -> j.getMarca().getPais().equals(this.pais));
     }
 }

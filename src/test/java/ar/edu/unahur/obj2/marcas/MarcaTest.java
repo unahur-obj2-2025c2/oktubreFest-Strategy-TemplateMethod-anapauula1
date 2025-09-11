@@ -2,6 +2,7 @@ package ar.edu.unahur.obj2.marcas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import ar.edu.unahur.obj2.marcas.Marcas.Negra;
 import ar.edu.unahur.obj2.marcas.Marcas.Roja;
 import ar.edu.unahur.obj2.marcas.Marcas.Rubia;
 import ar.edu.unahur.obj2.marcas.Personas.Alemanes;
+import ar.edu.unahur.obj2.marcas.Personas.Belgas;
 
 public class MarcaTest {
     @Test
@@ -25,10 +27,9 @@ public class MarcaTest {
         // sacamos el contenido de alchol que es 8.0 / 100 para el porcentaje * el contenido
         assertEquals(jarraUno.contenidoAlchol(cervezaRoja),0.04);
     }
-
     @Test
     void testSobreLaPersona() {
-        Alemanes unAleman = new Alemanes(75.0, Boolean.TRUE, null, 12);
+        Alemanes unAleman = new Alemanes(75.0, Boolean.TRUE, null, 12,"Alemania");
         Jarras primera = new Jarras(0.5, null);
         Jarras segunda = new Jarras(0.20, null);
         Negra negra1 = new Negra(5.0, "Arg", 8.0);
@@ -47,20 +48,35 @@ public class MarcaTest {
      */
     @Test
     void saberSiQuiereEntrarAUnaCarpaUnaPersona() {
-        Alemanes alemanDos = new Alemanes(72.0, Boolean.TRUE, null, 10);
+        Alemanes alemanDos = new Alemanes(72.0, Boolean.TRUE, null, 10,"Alemania");
         Rubia cervezaRubia = new Rubia(5.2, "Arg", 5.0);
         Carpas primerCarpa = new Carpas(20, Boolean.FALSE, cervezaRubia);
         // la carpa solo vende el tipo de cerveza rubia
         // saber si al la persona le gusta entrar a la carpa que dara falso
         assertFalse(alemanDos.quiereEntrarAUnaCarpa(primerCarpa));
         // si la carpa deja pasar al aleman 
-        assertTrue(primerCarpa.dejaPasarAPersona(alemanDos));
+        assertTrue(primerCarpa.dejaIngresarALaPersona(alemanDos));
         // si puede entrar la persona a la carpa debe tener los dos metodos
         assertFalse(alemanDos.puedeEntrarAlaCarpa(primerCarpa));
         // falso porque el no quiere entrar
         // el aleman no lo deja entrar entonces verificamos que se
         // cometio un error en este caso
-       
+        assertThrows(RuntimeException.class,()-> primerCarpa.entrarACarpa(alemanDos));
     }
-
+    @Test
+    void servirJarraAUnaPersonEliminandoLaMisma() {
+        Belgas primerBelga = new Belgas(50.0, Boolean.TRUE, null, 5,"Belgica");
+        Rubia cervezaRubia2 = new Rubia(5.2, "Arg", 5.0);
+        Carpas segundaCarpa = new Carpas(30, Boolean.FALSE, cervezaRubia2);
+        Jarras segundaJarra = new Jarras(0.5, cervezaRubia2);
+        
+        segundaCarpa.agregarJarra(segundaJarra);
+        assertEquals(segundaCarpa.getJarrasAVender().size(), 1); // 1 elemento
+        /*
+         si probamos servir la jarra nos dara error entonces 
+         nos fijamos si se largo el error porque la persona no esta en la carpa
+         */
+        assertThrows(RuntimeException.class,()-> segundaCarpa.servirJarra(primerBelga));
+    }
+    
 }

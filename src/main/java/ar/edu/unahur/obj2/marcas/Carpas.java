@@ -53,15 +53,33 @@ public class Carpas {
     public List<Jarras> getJarrasAVender() {
         return jarrasAVender;
     }
-    public void agregarJarra(Marca unaMarca,Jarras unaJarra){
-        if(this.marcaDeCervezaVendida == unaMarca){
-            jarrasAVender.add(unaJarra);
+    public void agregarJarra(Jarras unJarras){
+        if(this.marcaDeCervezaVendida == unJarras.getMarca()){
+            jarrasAVender.add(unJarras);
         }
         else{
             throw new RuntimeException("La marca de cerveza no es la aceptada");
         }
     }
-    public Boolean dejaPasarAPersona(Personas unaPersona){
+    public Boolean dejaIngresarALaPersona(Personas unaPersona){
         return (cantPersonas.size() < this.limitePersonas) && !(unaPersona.estaEbria());
+    }
+    public void entrarACarpa(Personas unaPersona){
+        if(unaPersona.puedeEntrarAlaCarpa(this)){
+            cantPersonas.add(unaPersona);
+        }
+        else{
+            throw new RuntimeException("No puede entrar");
+        }
+    }
+    public void servirJarra(Personas unaPersona){
+        Jarras jarra1 = new Jarras(2.5, marcaDeCervezaVendida);
+        if(cantPersonas.contains(unaPersona)){
+            unaPersona.agregarJarra(jarra1);
+            jarrasAVender.remove(jarra1);
+        }
+        else{
+            throw new RuntimeException("La persona no esta en la carpa");
+        }
     }
 }
