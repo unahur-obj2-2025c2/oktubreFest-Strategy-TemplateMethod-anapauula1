@@ -28,6 +28,13 @@ public abstract class Personas {
         this.nivAguante = nivAguante;
         this.pais = pais;
     }
+    
+    public String getPais() {
+        return pais;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
     public Double getPeso() {
         return peso;
     }
@@ -59,7 +66,9 @@ public abstract class Personas {
     public Boolean puedeEntrarAlaCarpa(Carpas unaCarpa){
         return quiereEntrarAUnaCarpa(unaCarpa) && unaCarpa.dejaIngresarALaPersona(this);
     }
-    public Boolean esPatriota(Marca unMarca){
+    public Boolean esPatriota(){
         return cantCervezas.stream().allMatch(j -> j.getMarca().getPais().equals(this.pais));
     }
+   // public Boolean sonCompatibles(Personas unaPersona, Personas otraPersona){}
+
 }

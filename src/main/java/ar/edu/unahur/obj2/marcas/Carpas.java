@@ -82,4 +82,10 @@ public class Carpas {
             throw new RuntimeException("La persona no esta en la carpa");
         }
     }
+    public Boolean esHomogenea(){
+        return cantPersonas.stream().map(p->p.getPais()).distinct().count() <=1;
+        // map --> hace una lista solo con las nacionalidades
+        // distint --> saca las repetidas
+        // las cuento, osea que con esto debe de haber solo unica nacionalidad
+    }
 }

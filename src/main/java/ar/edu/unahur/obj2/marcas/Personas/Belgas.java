@@ -10,6 +10,9 @@ public class Belgas extends Personas {
     public Belgas(Double peso, Boolean escuchaMusica, List<Jarras> cantCervezas, Integer nivAguante,String pais) {
        super(peso, escuchaMusica, cantCervezas, nivAguante,pais);
     }
+    public Belgas(Double peso, Boolean escuchaMusica, Integer nivAguante,String pais) {
+       super(peso, escuchaMusica, nivAguante,pais);
+    }
     @Override
     public Boolean leGusta(Marca unaMarca) {
         return unaMarca.getContenidoLupulo() > 4;

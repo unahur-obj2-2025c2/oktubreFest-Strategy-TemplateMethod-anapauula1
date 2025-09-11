@@ -78,5 +78,22 @@ public class MarcaTest {
          */
         assertThrows(RuntimeException.class,()-> segundaCarpa.servirJarra(primerBelga));
     }
+    @Test
+    void saberSiUnaPersonaEsPatriota() {
+        Belgas belgicaUno = new Belgas(50.5, Boolean.TRUE, 10, "Belgica");
+        Roja roja_uno = new Roja(2.0, "Belgica", 8.0);
+        Jarras jarraUno = new Jarras(5.0, roja_uno);
+        Jarras jarraDos = new Jarras(5.2, roja_uno);
+
+        // agrego ambas jarras a la lista de cervezas de la persona
+        belgicaUno.agregarJarra(jarraUno);
+        belgicaUno.agregarJarra(jarraDos);
+        // me fijo que esten las dos jarras dentro de la lista
+        assertEquals(belgicaUno.getCantCervezas().size(), 2);
+        // acertamos que la persona de belgica es patriota
+        assertTrue(belgicaUno.esPatriota());
+        // es patriota porque en este caso todas sus jarras son del mismo pais
+        // que donde proviene 
+    }
     
 }
