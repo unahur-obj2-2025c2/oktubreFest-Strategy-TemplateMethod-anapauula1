@@ -1,12 +1,14 @@
 package ar.edu.unahur.obj2.marcas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unahur.obj2.marcas.Marcas.Negra;
 import ar.edu.unahur.obj2.marcas.Marcas.Roja;
+import ar.edu.unahur.obj2.marcas.Marcas.Rubia;
 import ar.edu.unahur.obj2.marcas.Personas.Alemanes;
 
 public class MarcaTest {
@@ -23,7 +25,7 @@ public class MarcaTest {
         // sacamos el contenido de alchol que es 8.0 / 100 para el porcentaje * el contenido
         assertEquals(jarraUno.contenidoAlchol(cervezaRoja),0.04);
     }
-    
+
     @Test
     void testSobreLaPersona() {
         Alemanes unAleman = new Alemanes(75.0, Boolean.TRUE, null, 12);
@@ -40,4 +42,25 @@ public class MarcaTest {
         assertTrue(unAleman.leGusta(negra1));
         // a los alemanes le gustan todos los tipos
     }
+    /*
+     ---------- Requerimientos segunda parte ----------------
+     */
+    @Test
+    void saberSiQuiereEntrarAUnaCarpaUnaPersona() {
+        Alemanes alemanDos = new Alemanes(72.0, Boolean.TRUE, null, 10);
+        Rubia cervezaRubia = new Rubia(5.2, "Arg", 5.0);
+        Carpas primerCarpa = new Carpas(20, Boolean.FALSE, cervezaRubia);
+        // la carpa solo vende el tipo de cerveza rubia
+        // saber si al la persona le gusta entrar a la carpa que dara falso
+        assertFalse(alemanDos.quiereEntrarAUnaCarpa(primerCarpa));
+        // si la carpa deja pasar al aleman 
+        assertTrue(primerCarpa.dejaPasarAPersona(alemanDos));
+        // si puede entrar la persona a la carpa debe tener los dos metodos
+        assertFalse(alemanDos.puedeEntrarAlaCarpa(primerCarpa));
+        // falso porque el no quiere entrar
+        // el aleman no lo deja entrar entonces verificamos que se
+        // cometio un error en este caso
+       
+    }
+
 }

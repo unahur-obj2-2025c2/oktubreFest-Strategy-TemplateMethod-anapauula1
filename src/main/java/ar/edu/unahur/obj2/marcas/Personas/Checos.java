@@ -2,6 +2,7 @@ package ar.edu.unahur.obj2.marcas.Personas;
 
 import java.util.List;
 
+import ar.edu.unahur.obj2.marcas.Carpas;
 import ar.edu.unahur.obj2.marcas.Jarras;
 import ar.edu.unahur.obj2.marcas.Marcas.Marca;
 
@@ -12,6 +13,10 @@ public class Checos extends Personas {
     @Override
     public Boolean leGusta(Marca unaMarca) {
         return unaMarca.getGraduacion() > 8;
+    }
+    @Override
+    public Boolean adicional(Carpas unaCarpa) {
+        return Boolean.TRUE;
     }
     
 }

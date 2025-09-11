@@ -3,6 +3,7 @@ package ar.edu.unahur.obj2.marcas.Personas;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unahur.obj2.marcas.Carpas;
 import ar.edu.unahur.obj2.marcas.Jarras;
 import ar.edu.unahur.obj2.marcas.Marcas.Marca;
 
@@ -46,4 +47,13 @@ public abstract class Personas {
         return cantCervezas.stream().mapToDouble(j->j.getCapacidadLitros()).sum();
     }
     public abstract Boolean leGusta(Marca unaMarca);
+
+    public Boolean quiereEntrarAUnaCarpa(Carpas unaCarpa){
+        return this.leGusta(unaCarpa.getMarcaDeCervezaVendida()) && this.escuchaMusica && unaCarpa.getTieneBanda() && adicional(unaCarpa);
+    }
+    public abstract Boolean adicional(Carpas unaCarpa);
+
+    public Boolean puedeEntrarAlaCarpa(Carpas unaCarpa){
+        return quiereEntrarAUnaCarpa(unaCarpa) && unaCarpa.dejaPasarAPersona(this);
+    }
 }
