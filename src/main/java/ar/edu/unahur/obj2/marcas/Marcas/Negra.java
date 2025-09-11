@@ -12,8 +12,7 @@ public class Negra extends Marca {
             return GraduacionReg.getInstance().getNro();
         }
         else{
-            return this.getContenidoLupulo();
+            return this.getContenidoLupulo() * 2;
         }
     }
-   
 }

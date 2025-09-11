@@ -19,6 +19,21 @@ public abstract class Personas {
         this.cantCervezas = cantCervezas;
         this.nivAguante = nivAguante;
     }
+    public Double getPeso() {
+        return peso;
+    }
+    public Boolean getEscuchaMusica() {
+        return escuchaMusica;
+    }
+    public Integer getNivAguante() {
+        return nivAguante;
+    }
+    public List<Jarras> getCantCervezas() {
+        return cantCervezas;
+    }
+    public void agregarJarra(Jarras unaJarra){
+        cantCervezas.add(unaJarra);
+    }
     public Personas(Double peso, Boolean escuchaMusica, Integer nivAguante) {
         this.peso = peso;
         this.escuchaMusica = escuchaMusica;

@@ -10,5 +10,4 @@ public class Roja extends Negra{
         // del metodo en la cerveza negra
         return super.getGraduacion() * 1.25;
     }
-    
 }

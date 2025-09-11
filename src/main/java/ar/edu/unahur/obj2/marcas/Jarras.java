@@ -22,4 +22,7 @@ public class Jarras {
         this.capacidadLitros = capacidadLitros;
         this.marca = marca;
     }
+    public Double contenidoAlchol(Marca unaMarca){
+        return this.capacidadLitros * (unaMarca.getGraduacion() / 100);
+    }
 }
